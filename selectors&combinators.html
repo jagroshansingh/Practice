@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #combine>h3{
+        color: pink;
+      }
+      #side>h3:first-child~h3{
+        color:skyblue
+      }
+    </style>
+  </head>
+  <body>
+    <div id="combine">
+        <h1>Combinators</h1>
+      <h2>operators for combining selectors, to target based on relationship</h2>
+      <h3>Decendent combinators(space): use to select all the decendents</h3>
+      <h3>Child combinators(>): use to select all the direct children</h3>
+      <h3>Adjecent combinators(+): use to select the next sibling</h3>
+      <h3>General combinators(~): use to select all the siblings after that</h3>
+      <div id="side">
+        <h3>First</h3>
+        <h3>First</h3>
+        <h3>First</h3>
+      </div>
+      <h3>First</h3>
+    </div>
+    <hr>
+    <div id="specificity">
+        <h1>Specifity</h1>
+        <h2>process to determine which style to apply, when multiple competing styles are present</h2>
+
+    </div>
+  </body>
+</html>
