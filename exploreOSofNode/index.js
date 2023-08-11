@@ -16,6 +16,6 @@ const os=require('os')
 // console.log(os.release())           //--------OS version(in numbers)
 
 // console.log(os.uptime())        //system uptime/awaketime in seconds
-// console.log(os.userInfo())
+console.log(os.userInfo())
 // console.log(os.version())        //--------OS version (in Plain English)
 

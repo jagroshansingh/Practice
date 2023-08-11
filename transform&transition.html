@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container > div {
+        border: 1px solid;
+        height: 300px;
+      }
+      #container > div:nth-of-type(even) {
+        background-color: green;
+      }
+      #container > div:nth-of-type(odd) {
+        background-color: red;
+      }
+      #container > div:first-child > img {
+        /* translate: 300px;
+            rotate:60deg;
+            transform-origin:  bottom left; */
+
+        transform: translate(500px,50%) rotate(20deg);
+      }
+      #container>div:nth-child(2)>img{
+        transform:skewX(10deg) translateX(150px);
+        transform-origin: top right;
+        rotate:90deg
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div>
+        <img
+          src="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transforms/Using_CSS_transforms/logo.png"
+          alt="unaltered mdn logo"
+        />
+      </div>
+      <div>
+        <img src="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transforms/Using_CSS_transforms/logo.png" alt="">
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </body>
+</html>
