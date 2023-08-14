@@ -7,6 +7,7 @@
     <style>
         body{
             margin: 0;
+            /* cursor: url('https://cdn-icons-png.flaticon.com/128/6002/6002362.png'),auto; */
         }
         .point{
             border:1px solid;
@@ -14,25 +15,42 @@
             border-radius: 50%;
             width: 50px;
             height: 50px;
+            transition: transform 1s;  
         }
         #container{
             width: 100vw;
             height: 100vh;
-            border: 1px solid ;
+            border: 1px solid;    
+                 
         }
     </style>
 </head>
 <body>
     <div id="container">
-        <h1>Main hu na</h1>
+        <!-- <h1>Main hu na: <span id="move"></span></h1> -->
+        <div class="point"></div>
     </div>
 </body>
 </html>
 <script>
     let contain=document.querySelector('#container')
     document.addEventListener('click',()=>{
-        let div=document.createElement('div')
-        div.setAttribute("class","point")
-        contain.append(div)
+        
     })   
+    let dv=document.querySelector('.point')
+
+    document.addEventListener('click',(eve)=>{
+        const mouseX=eve.clientX;
+        const mouseY=eve.clientY;
+        
+
+        // contain.innerHTML=""
+        // let div=document.createElement('div')
+        // div.setAttribute("class","point")
+        // div.style.backgroundColor='blue'
+        dv.style.transform=`translateY(${mouseY-25}px)`;
+        dv.style.transform+=`translateX(${mouseX-25}px)`;
+
+        // contain.append(div)
+    })
 </script>
