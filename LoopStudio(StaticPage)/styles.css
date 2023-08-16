@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+}
+
+#frontBackground{
+    width: 100%;
+}
+
+#main {
+  border: 0px solid;
+  position: absolute;
+  top: 0;
+  width: 79%;
+  left: 11%;
+}
+
+#top {
+  color: white;
+}
+
+#top > div {
+  display: flex;
+  justify-content: space-between;
+  border: 0px solid;
+  margin-top: 5%;
+}
+
+#top img {
+  border: 0px solid;
+  width: 80%;
+}
+
+#logoImage {
+  border: 0px solid;
+  display: grid;
+  align-items: center;
+}
+
+#categories {
+  display: flex;
+  border: 0px solid;
+  width: 35%;
+  justify-content: space-between;
+}
+
+#categories p{
+    font-weight: 600;
+    font-size: small;
+}
+
+h1 {
+  border: 1px solid;
+  width: 49%;
+  padding: 3.5%;
+  font-size: 55px;
+  font-weight: 300;
+  margin-top: 10%;
+}
+
+.headFont {
+  font-family: "Fraunces", serif;
+  font-family: "Josefin Sans", sans-serif;
+}
