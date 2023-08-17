@@ -4,6 +4,7 @@ body {
 
 #frontBackground{
     width: 100%;
+    filter: grayscale(0.40);
 }
 
 #main {
@@ -99,6 +100,48 @@ h5{
   border: 1px solid;
   padding: 15px 30px;
   letter-spacing: .2rem;
+}
+
+
+/* ------------------------------------------------------------------ */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 3%;
+}
+.grid img{
+  width: 100%;
+}
+#textGrid h3{
+  font-family: "Fraunces", serif;
+  font-family: "Josefin Sans", sans-serif;
+
+  border: 0px solid;
+  font-size:x-large;
+  padding-left: 12%;
+  width: 70%;
+  font-weight: 100;
+}
+#textGrid{
+  transform: translateY(-450px);
+  color: white;
+  row-gap: 280px;
+}
+
+#test{
+  background-image: url("./images-20230816T094214Z-001/images/desktop/image-deep-earth.jpg");
+  border: 1px solid;
+  height: 300px;
+  box-shadow: rgba(0, 0, 0, 0.95) 0px -50px 36px -28px inset;
+}
+
+/* --------------------------------------------------------------------- */
+
+#footer{
+  background-color: black;
+  color: white;
+  transform: translateY(1600px);
+  padding: 3% 10%;
 }
 
 
