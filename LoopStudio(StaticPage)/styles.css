@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  border: 0px solid;
 }
 
 #frontBackground{
@@ -42,6 +43,10 @@ body {
   border: 0px solid;
   width: 35%;
   justify-content: space-between;
+}
+
+#hamBurger{
+  display: none;
 }
 
 #categories p{
@@ -142,6 +147,118 @@ h5{
   color: white;
   transform: translateY(1600px);
   padding: 3% 10%;
+}
+
+
+@media screen and (max-width:475px){
+
+  #main{
+    width: 90%;
+    left:5%;
+  }
+
+
+  #frontBackground{
+    /* width: 100%; */
+    object-fit: cover;
+    height: 90vh;
+  }
+
+  #categories{
+    display: none;
+  }
+
+  #hamBurger{
+    border: 0px solid;
+    display: grid;
+    align-items: center;
+  }
+
+  #hamBurger img{
+    width: 100%;
+  }
+
+  h1{
+    font-size: 40px;
+    width: auto;
+    padding: 9%;
+  }
+
+  .grid{
+    grid-template-columns: repeat(1,1fr);
+    /* margin-top: 450px; */
+    display: none;
+  }
+
+  #vr{
+    position: none;
+    translate: 0 0;
+    width:auto;
+    padding: 0;
+    border: 0px solid;
+    text-align: center;
+    margin-top: 10%;
+  }
+
+  /* ------------------------------------------------------------------ */
+  #middle img{
+    width: 100%;
+  }
+  #creation{
+    position: absolute;
+    top: 1050px;
+    border: 0px solid;
+    width: 100%;
+    
+  }
+  #creation h2{
+    text-align: center;
+    border: 0px solid;
+    width: 100%;
+  }
+  h5{
+    position: absolute;
+    transform: translate(70%,2900%);
+    display: block;
+  }
+
+  .landScape{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    margin-top: 130%;
+    gap: 25px;
+  }
+
+  .landScape>img{
+    width: 100%;
+  }
+
+  #textGrid{
+    /* color: black; */
+    border: 0px solid red;
+    width: 159px;
+    display: block;
+    transform: translateY(-1130px);
+    display: grid;
+    gap: 6%;
+  }
+
+  #footer{
+    transform: translateY(2000px);
+  }
+  #categorie{
+    text-align: center;
+    line-height: 30px;
+  }
+  #logoImg{
+    margin: 10% 0%;
+    border: 0px solid white;
+    display: flex;
+    justify-content: center;
+  }
+  #logoImg>img{
+    border: 0px solid white;
+  }
 }
 
 
