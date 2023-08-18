@@ -45,6 +45,12 @@ body {
   justify-content: space-between;
 }
 
+#categorie{
+  display: flex;
+  width: 35%;
+  justify-content: space-between;
+}
+
 #hamBurger{
   display: none;
 }
