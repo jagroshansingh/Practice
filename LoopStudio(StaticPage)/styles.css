@@ -117,6 +117,10 @@ h5{
 .grid img{
   width: 100%;
 }
+
+.landScape{
+  display: none;
+}
 #textGrid h3{
   font-family: "Fraunces", serif;
   font-family: "Josefin Sans", sans-serif;
