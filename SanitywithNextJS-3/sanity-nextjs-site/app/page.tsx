@@ -1,10 +1,10 @@
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
-import HeroSvg from "./icons/HeroSvg";;
+import HeroSvg from "./icons/HeroSvg";
+import ScrapedImage from "./components/ScrapedImage";
 
 export default async function Home() {
   const profile: ProfileType[] = await getProfile();
-  // console.log(profile)
 
   return (
     <main className="max-w-7xl mx-auto lg:px-16 px-6">
@@ -36,6 +36,7 @@ export default async function Home() {
             </div>
           ))}
         <HeroSvg />
+        <ScrapedImage/>
       </section>
     </main>
   );
