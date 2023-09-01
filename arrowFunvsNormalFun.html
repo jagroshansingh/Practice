@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var naam='haha';
+    console.log(this)
+    function a(){
+        // let naam='haha'
+        console.log('a',this.naam)
+    }
+
+    const b=()=>{
+        // let naam='haha'
+        console.log('b',this.naam)
+    }
+
+    a()
+    b()
+</script>

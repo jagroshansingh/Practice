@@ -15,7 +15,7 @@
             border-radius: 50%;
             width: 50px;
             height: 50px;
-            transition: transform 1s;  
+            transition: transform 0.5s;  
         }
         #container{
             width: 100vw;
@@ -38,8 +38,9 @@
         
     })   
     let dv=document.querySelector('.point')
+    console.log(window)
 
-    document.addEventListener('click',(eve)=>{
+    document.addEventListener('mousemove',(eve)=>{
         const mouseX=eve.clientX;
         const mouseY=eve.clientY;
         
