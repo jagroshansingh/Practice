@@ -6,22 +6,39 @@
     <title>Document</title>
     <style>
         body{
-            
+            text-align: center;
         }
+        #navbar {
+        border: 1px solid;
+        display: flex;
+        justify-content: space-around;
+        padding: 1%;
+        margin-bottom: 2%;
+      }
         table{
-            border: 1px solid;
-            display: block;
-            display: flex;
-            justify-content: center;
-        }
-        table>thead>tr{
             /* border:1px solid; */
+            /* display: block; */
+            width: 100vw;
+        }
+        thead,tbody{
+            /* border: 1px solid; */
+            /* width: 100vw; */
+        }
+        tr{
+            /* border: 1px solid; */
             /* display: flex; */
-            /* justify-content: space-evenly; */
+            /* justify-content: space-between; */
         }
     </style>
+    <script type="module" >
+        import fun from './navbar.js'
+        document.getElementById('nav').innerHTML=fun()
+    </script>
 </head>
 <body>
+    <div id="nav">
+
+    </div>
     <table border="1">
         <thead>
             <tr>
@@ -33,13 +50,38 @@
                 <th>Total</th>
             </tr>
         </thead>
-        <tbody>
-            <tr id="tableData">
-            </tr>
+        <tbody id="tableData">
         </tbody>
     </table>
 </body>
 <script>
+    let dataArr=JSON.parse(localStorage.getItem('MasaiCoffee'))
+    // console.log(data)
+
+    dataArr.forEach((data,i)=>{
+        let tr=document.createElement('tr')
+        let ar=[]
+        for(let i=0; i<6; i++)
+        {
+            ar[i]=document.createElement('td')
+        }
+        ar[0]=i+1
+        let count=1
+        for(let key in data)
+        {
+            ar[count].innerText=data[key]
+            count++
+        }
+
+        for(let val of ar)
+        {
+            tr.append(val)
+        }
+
+        let tbody=document.getElementById('tableData')
+        tbody.append(tr)
+    })
+    
 
 </script>
 </html>

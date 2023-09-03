@@ -15,17 +15,18 @@
         display: flex;
         justify-content: space-around;
         padding: 1%;
+        margin-bottom: 2%;
       }
 
-      form{
+      form {
         border: 1px solid;
         width: 40%;
         margin: auto;
         padding: 5%;
       }
 
-      form>div{
-        border:0px solid;
+      form > div {
+        border: 0px solid;
         display: flex;
         justify-content: space-between;
         margin-bottom: 5px;
@@ -43,7 +44,7 @@
         <form action="">
           <div>
             <label for="">Customer Name:</label>
-            <input type="text" placeholder="Customer Name" id="customerName"/>
+            <input type="text" placeholder="Customer Name" id="customerName" />
           </div>
           <div>
             <label for="">Coffee Type:</label>
@@ -57,19 +58,19 @@
           <div>
             <label for="">Size:</label>
             <select name="size" id="size">
-                <option value="">Choose one size</option>
-                <option value="Small">Small</option>
-                <option value="Medium">Medium</option>
-                <option value="Large">Large</option>
+              <option value="">Choose one size</option>
+              <option value="Small">Small</option>
+              <option value="Medium">Medium</option>
+              <option value="Large">Large</option>
             </select>
           </div>
           <div>
             <label for="">Quantity:</label>
-            <input type="number" id="quantity">
+            <input type="number" id="quantity" />
           </div>
           <div>
-            <h3>Total Price:</h3>    
-            <h3 id="total"></h3>       
+            <h3>Total Price:</h3>
+            <h3 id="total"></h3>
           </div>
           <button type="submit">Submit</button>
         </form>
@@ -77,59 +78,69 @@
     </div>
   </body>
   <script>
-    let quantity,total,cname;
-    let size={
-        val:undefined,
-        Small:50,
-        Medium:100,
-        Large:150
-    }
-    let ctype={
-        val:undefined,
-        Americano:2,
-        Expresso:1.4,
-        Cappuccino:1,
-    }
-    document.querySelector('#customerName').addEventListener('change',(el)=>{
-        // console.log(el.target.value)
-        cname=el.target.value;
-    })
+    let quantity, total, cname;
+    let size = {
+      val: undefined,
+      Small: 50,
+      Medium: 100,
+      Large: 150,
+    };
+    let ctype = {
+      val: undefined,
+      Americano: 2,
+      Expresso: 1.4,
+      Cappuccino: 1,
+    };
+    let customerName = document.querySelector("#customerName");
+    customerName.addEventListener("change", (el) => {
+      cname = el.target.value;
+    });
 
-    document.querySelector('#coffeeType').addEventListener('change',(el)=>{
-        // console.log(el.target.value)
-        ctype.val=el.target.value;
-    })
+    let coffeeType = document.querySelector("#coffeeType");
+    coffeeType.addEventListener("change", (el) => {
+      ctype.val = el.target.value;
+    });
     // document.querySelector('#coffeeType').oninput=(el)=>{console.log(el.target.value)}
 
-    document.querySelector('#size').addEventListener('change',(el)=>{
-        // console.log(el.target.value)
-        size.val=el.target.value;
-    })
+    let sze = document.querySelector("#size");
+    sze.addEventListener("change", (el) => {
+      size.val = el.target.value;
+    });
 
-    document.querySelector('#quantity').addEventListener('input',(el)=>{
-        // console.log(el.target.value)
-        quantity=el.target.value;
-    })
+    let quan = document.querySelector("#quantity");
+    quan.addEventListener("input", (el) => {
+      quantity = el.target.value;
+    });
 
-    document.querySelector('form').addEventListener('input',(el)=>{
-        if(ctype.val && size.val && quantity)
-        {
+    let tot = document.getElementById("total");
+    document.querySelector("form").addEventListener("input", (el) => {
+      if (ctype.val && size.val && quantity) {
+        total = ctype[ctype.val] * size[size.val] * quantity;
+        // console.log(total)       
+        tot.innerHTML = "";
+        tot.style.color = "red";
+        tot.append("₹ ", total);
+      }
+    });
+    //--------------------putting data in LS-------------------------
+    document.querySelector("form").addEventListener("submit", (el) => {
+      el.preventDefault();
 
-            total=ctype[ctype.val]*size[size.val]*quantity
-            // console.log(total)
-            let tot=document.getElementById('total')
-            tot.innerHTML=""
-            tot.style.color='red'
-            tot.append('₹ ',total)
-        }
-    })
+      if (!cname || !total) alert("Empty Fields");
+      else {
+        let obj = { cname, ctype: ctype.val, size: size.val, quantity, total };
+        let arr = JSON.parse(localStorage.getItem("MasaiCoffee")) || [];
+        arr.push(obj);
+        localStorage.setItem("MasaiCoffee", JSON.stringify(arr));
 
-    //---------------------------------------------------------------
-    document.querySelector('form').addEventListener('submit',(el)=>{
-        el.preventDefault()
-        
-        localStorage.setItem('MasaiCoffee',JSON.stringify({cname,ctype:ctype.val,size:size.val,quantity,total}))
-        // localStorage.setItem('MasaiCoffee',JSON.stringify({name:'jaja'}))
-    })
+        //-----------for clearing the form again--------------------
+        coffeeType.value = "";
+        customerName.value = "";
+        sze.value = "";
+        quan.value = "";
+        tot.innerText=""
+        // location.reload()
+      }
+    });
   </script>
 </html>
