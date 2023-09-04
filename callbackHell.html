@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 95vw;
+            height: 95vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #container{
+            display: flex;
+            gap: 2%;
+        }
+        .word{
+            color: #308d46;
+            font-size: 4rem;
+            transition: all .5s ease-in;
+            transform: translateY(3.8rem);
+            opacity: 0;
+            /* visibility: hidden; */
+        }
+        .animate{
+            opacity: 0.5;
+            /* visibility: visible; */
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2 class="word">All</h2>
+        <h2 class="word">the</h2>
+        <h2 class="word">Best</h2>
+    </div>
+</body>
+<script>
+    let words=document.querySelectorAll('#container>h2')
+
+    const animateAll=(animate)=>{
+        setTimeout(()=>{
+            animate(words[0]);
+            setTimeout(()=>{
+                animate(words[1]);
+                setTimeout(()=>{
+                    animate(words[2]);
+                },1000)
+            },1000)
+        },1000)
+    }
+    
+    const animate=(word)=>{
+        word.classList.add("animate");
+    }
+
+    animateAll(animate);
+</script>
+</html>
