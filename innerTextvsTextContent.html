@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <style>
+        a{
+            text-decoration:dotted;
+        }
+    </style> -->
+  </head>
+  <body>
+    <!-- <div id="example1">This is <em style="display: none">hidden</em> text.</div> -->
+    <!-- <div id="example2">This is <em>hidden</em> text.</div> -->
+
+    <div id="mylinks">
+      This is my <b>link collection</b>:
+      <ul>
+        <li>
+          <a href="www.borland.com">Bye bye <b>Borland</b> </a>
+        </li>
+        <li>
+          <a href="www.microfocus.com">Welcome to <b>Micro Focus</b></a>
+        </li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    // let see = document.getElementById("example1");
+    // console.log(see.innerText);
+
+    // let saw = document.getElementById("example1");
+    // console.log(saw.textContent);
+
+    let a = document.getElementById("mylinks");
+    console.log(a.innerText);
+
+    let b = document.getElementById("mylinks");
+    console.log(a.textContent);
+  </script>
+</html>
