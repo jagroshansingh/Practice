@@ -1,87 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="order.css" />
     <style>
-        body{
-            text-align: center;
-        }
-        #navbar {
-        border: 1px solid;
-        display: flex;
-        justify-content: space-around;
-        padding: 1%;
-        margin-bottom: 2%;
+      table {
+        width: 100vw;
       }
-        table{
-            /* border:1px solid; */
-            /* display: block; */
-            width: 100vw;
-        }
-        thead,tbody{
-            /* border: 1px solid; */
-            /* width: 100vw; */
-        }
-        tr{
-            /* border: 1px solid; */
-            /* display: flex; */
-            /* justify-content: space-between; */
-        }
+      #editBody {
+        border: 1px solid;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        padding-top: 30vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        display: none;
+      }
     </style>
-    <script type="module" >
-        import fun from './navbar.js'
-        document.getElementById('nav').innerHTML=fun()
+    <script type="module">
+      import fun from "./navbar.js";
+      document.getElementById("nav").innerHTML = fun();
     </script>
-</head>
-<body>
-    <div id="nav">
-
-    </div>
+  </head>
+  <body>
+    <div id="nav"></div>
     <table border="1">
-        <thead>
-            <tr>
-                <th>S.No</th>
-                <th>Customer</th>
-                <th>Type</th>
-                <th>Size</th>
-                <th>Quantity</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody id="tableData">
-        </tbody>
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Customer</th>
+          <th>Type</th>
+          <th>Size</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="tableData"></tbody>
     </table>
-</body>
-<script>
-    let dataArr=JSON.parse(localStorage.getItem('MasaiCoffee'))
-    // console.log(data)
 
-    dataArr.forEach((data,i)=>{
-        let tr=document.createElement('tr')
-        let ar=[]
-        for(let i=0; i<6; i++)
-        {
-            ar[i]=document.createElement('td')
-        }
-        ar[0]=i+1
-        let count=1
-        for(let key in data)
-        {
-            ar[count].innerText=data[key]
-            count++
-        }
+    <div id="editBody">
+      <div id="editContainer">
+        <h3 style="text-align: center">Edit the Order</h3>
+      </div>
+    </div>
+  </body>
 
-        for(let val of ar)
-        {
-            tr.append(val)
-        }
+  <script type="module">
+    import od from "./orderDetail.js";
+    document.getElementById("editContainer").innerHTML = od();
+  </script>
 
-        let tbody=document.getElementById('tableData')
-        tbody.append(tr)
-    })
+  <script type="module">
+    import coffeeOrder from "./coffeeOrder.js";
     
 
-</script>
+    let dataArr = JSON.parse(localStorage.getItem("MasaiCoffee"));
+    // console.log(data)
+    let editBody = document.getElementById("editBody");
+    let editContainer = document.getElementById("editContainer");
+
+    dataArr.forEach((data, i) => {
+      let tr = document.createElement("tr");
+      let ar = [];
+      for (let i = 0; i < 6; i++) {
+        ar[i] = document.createElement("td");
+      }
+      ar[0] = i + 1;
+      let count = 1;
+      for (let key in data) {
+        ar[count].innerText = data[key];
+        count++;
+      }
+
+      for (let val of ar) {
+        tr.append(val);
+      }
+
+      let tre = document.createElement("td");
+      let editBtn = document.createElement("button");
+      editBtn.innerText = "Edit";
+      editBtn.addEventListener("click", (el) => {
+        coffeeOrder();
+        editBody.style.display = "block";
+        document.getElementById("customerName").value = data.cname;
+        document.getElementById("coffeeType").value = data.ctype;
+        document.getElementById("size").value = data.size;
+        document.getElementById("quantity").value = data.quantity;
+
+        
+      });
+      tre.append(editBtn);
+
+      let trd = document.createElement("td");
+      let deleteBtn = document.createElement("button");
+      deleteBtn.innerText = "Delete";
+      trd.append(deleteBtn);
+
+      tr.append(tre);
+      tr.append(trd);
+
+      let tbody = document.getElementById("tableData");
+      tbody.append(tr);
+    });
+
+    editBody.addEventListener("click", (el) => {
+      if (el.target.id == "editBody" || el.target.id == "editContainer")
+        editBody.style.display = "none";
+    });
+  </script>
+
+  <script type="module">
+    
+  </script>
 </html>

@@ -4,143 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      body {
-        margin: 0px;
-        text-align: center;
-      }
-
-      #navbar {
-        border: 1px solid;
-        display: flex;
-        justify-content: space-around;
-        padding: 1%;
-        margin-bottom: 2%;
-      }
-
-      form {
-        border: 1px solid;
-        width: 40%;
-        margin: auto;
-        padding: 5%;
-      }
-
-      form > div {
-        border: 0px solid;
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 5px;
-      }
-    </style>
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="order.css" />
+    
   </head>
   <body>
-    <div id="navbar">
-      <a href="./index.html">Order</a>
-      <a href="./dashboard.html">Dashboard</a>
-    </div>
+    <div id="nav"></div>
     <div>
       <h1>Order Page</h1>
-      <div>
-        <form action="">
-          <div>
-            <label for="">Customer Name:</label>
-            <input type="text" placeholder="Customer Name" id="customerName" />
-          </div>
-          <div>
-            <label for="">Coffee Type:</label>
-            <select name="coffeeType" id="coffeeType">
-              <option value="">Select from the following</option>
-              <option value="Americano">Americano</option>
-              <option value="Expresso">Expresso</option>
-              <option value="Cappuccino">Cappuccino</option>
-            </select>
-          </div>
-          <div>
-            <label for="">Size:</label>
-            <select name="size" id="size">
-              <option value="">Choose one size</option>
-              <option value="Small">Small</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
-            </select>
-          </div>
-          <div>
-            <label for="">Quantity:</label>
-            <input type="number" id="quantity" />
-          </div>
-          <div>
-            <h3>Total Price:</h3>
-            <h3 id="total"></h3>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+      <div id="editContainer"></div>
     </div>
   </body>
-  <script>
-    let quantity, total, cname;
-    let size = {
-      val: undefined,
-      Small: 50,
-      Medium: 100,
-      Large: 150,
-    };
-    let ctype = {
-      val: undefined,
-      Americano: 2,
-      Expresso: 1.4,
-      Cappuccino: 1,
-    };
-    let customerName = document.querySelector("#customerName");
-    customerName.addEventListener("change", (el) => {
-      cname = el.target.value;
-    });
 
-    let coffeeType = document.querySelector("#coffeeType");
-    coffeeType.addEventListener("change", (el) => {
-      ctype.val = el.target.value;
-    });
-    // document.querySelector('#coffeeType').oninput=(el)=>{console.log(el.target.value)}
-
-    let sze = document.querySelector("#size");
-    sze.addEventListener("change", (el) => {
-      size.val = el.target.value;
-    });
-
-    let quan = document.querySelector("#quantity");
-    quan.addEventListener("input", (el) => {
-      quantity = el.target.value;
-    });
-
-    let tot = document.getElementById("total");
-    document.querySelector("form").addEventListener("input", (el) => {
-      if (ctype.val && size.val && quantity) {
-        total = ctype[ctype.val] * size[size.val] * quantity;
-        // console.log(total)       
-        tot.innerHTML = "";
-        tot.style.color = "red";
-        tot.append("₹ ", total);
-      }
-    });
-    //--------------------putting data in LS-------------------------
-    document.querySelector("form").addEventListener("submit", (el) => {
-      el.preventDefault();
-
-      if (!cname || !total) alert("Empty Fields");
-      else {
-        let obj = { cname, ctype: ctype.val, size: size.val, quantity, total };
-        let arr = JSON.parse(localStorage.getItem("MasaiCoffee")) || [];
-        arr.push(obj);
-        localStorage.setItem("MasaiCoffee", JSON.stringify(arr));
-
-        //-----------for clearing the form again--------------------
-        coffeeType.value = "";
-        customerName.value = "";
-        sze.value = "";
-        quan.value = "";
-        tot.innerText=""
-        // location.reload()
-      }
-    });
+  <script type="module">
+    import navbar from "./navbar.js";
+    document.getElementById("nav").innerHTML = navbar();
   </script>
+
+  <script type="module">
+    import od from "./orderDetail.js";
+    document.getElementById("editContainer").innerHTML = od();
+  </script>
+
+  <script type="module">
+    import coffeeOrder from "./coffeeOrder.js";
+    coffeeOrder();
+  </script>
+  
 </html>
