@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class stack{
+        constructor(){
+            this.arr=[];
+            this.leng=0
+        }
+
+        dalo(val){
+            this.arr[this.leng]=val
+            this.leng++
+        }
+        nikalo(){
+            this.arr[this.leng-1]=undefined
+            this.leng--
+        }
+        dekho(){
+            return this.arr
+        }
+    }
+    let see=new stack()
+    console.log(see)
+    see.dalo(5)
+    see.dalo(8)
+    see.dalo(34)
+    see.nikalo()
+    see.nikalo()
+    see.dalo(89)
+    console.log(see.dekho())
+
+</script>
+</html>
