@@ -24,6 +24,13 @@
       #editContainer{
         /* background-color: white; */
       }
+      #page{
+        margin-top: 50px;
+      }
+
+      #page *{
+        display: inline;
+      }
     </style>
     <script type="module">
       import fun from "./navbar.js";
@@ -46,6 +53,12 @@
       <tbody id="tableData"></tbody>
     </table>
 
+    <div id="page">
+      <button>Prev</button>
+      <p></p>
+      <button>Next</button>
+    </div>
+
     <div id="editBody">
       <div id="editContainer">
         <h3 style="text-align: center">Edit the Order</h3>
@@ -66,14 +79,20 @@
     // console.log(data)
     let editBody = document.getElementById("editBody");
     let editContainer = document.getElementById("editContainer");
-
-    dataArr.forEach((data, i) => {
+    let tbody = document.getElementById("tableData");
+    
+    let start=0
+    function table(){
+    
+    for(let i=start; i<start+5; i++){
+    // dataArr.forEach((data, i) => {
+      let data=dataArr[i]
       let tr = document.createElement("tr");
       let ar = [];
-      for (let i = 0; i < 6; i++) {
-        ar[i] = document.createElement("td");
+      for (let j = 0; j < 6; j++) {        // 6 colmns
+        ar[j] = document.createElement("td");
       }
-      ar[0] = i + 1;
+      ar[0] = i + 1;          //for serial number
       let count = 1;
       for (let key in data) {
         ar[count].innerText = data[key];
@@ -113,14 +132,47 @@
       tr.append(tre);
       tr.append(trd);
 
-      let tbody = document.getElementById("tableData");
+      
       tbody.append(tr);
-    });
-
+    }
+    // );
+  }
+    table()
+    //--------------editModal
     editBody.addEventListener("click", (el) => {
       if (el.target.id == "editBody" || el.target.id == "editContainer")
         editBody.style.display = "none";
     });
+
+    //--------------pagination
+    let prevBtn=document.querySelector('#page>button:first-child')
+    prevBtn.addEventListener('click',()=>{
+      tbody.innerHTML=""
+      start-=5
+      table()
+      pagination()
+    })
+
+    let nxtBtn=document.querySelector('#page>button:last-child')
+    nxtBtn.addEventListener('click',()=>{
+      tbody.innerHTML=""
+      start+=5
+      table()
+      pagination()
+    })
+
+    function pagination(){
+      let pageNum=Math.floor(start/5)+1
+      document.querySelector('#page>p').innerText=pageNum
+
+      if(pageNum*start>=dataArr.length) nxtBtn.disabled=true
+      else nxtBtn.disabled=false
+
+      if(pageNum==1) prevBtn.disabled=true
+      else prevBtn.disabled=false
+    }
+    pagination()
+
   </script>
   </script>
 </html>
