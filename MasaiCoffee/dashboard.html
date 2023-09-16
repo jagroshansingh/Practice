@@ -31,6 +31,14 @@
       #page *{
         display: inline;
       }
+      #nav+div{
+        display: flex;
+        justify-content: space-around;
+        margin: 30px 0px;
+      }
+      #nav+div>div:first-child{
+        display: grid;
+      }
     </style>
     <script type="module">
       import fun from "./navbar.js";
@@ -39,6 +47,29 @@
   </head>
   <body>
     <div id="nav"></div>
+    <div>
+      <div>
+        <!-- <label for="">Sort</label> -->
+        <p><input type="radio" name="sort" id="inc">Low to High</p>
+        <p><input type="radio" name="sort" id="desc">High to Low</p>
+      </div>
+
+      <div>
+      <Select id="typeFilter">
+        <option value="">Filter Coffee Type</option>
+        <option value="Americano">Americano</option>
+        <option value="Expresso">Expresso</option>
+        <option value="Cappuccino">Cappuccino</option>
+      </Select>
+
+      <select id="sizeFilter">
+        <option value="">Filter size</option>
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+      </select>
+    </div>
+    </div>
     <table border="1">
       <thead>
         <tr>
@@ -74,16 +105,13 @@
   <script type="module">
     import coffeeOrder from "./coffeeOrder.js";
     
-
     let dataArr = JSON.parse(localStorage.getItem("MasaiCoffee"));
-    // console.log(data)
     let editBody = document.getElementById("editBody");
     let editContainer = document.getElementById("editContainer");
     let tbody = document.getElementById("tableData");
     
     let start=0
-    function table(){
-    
+    function table(dataArr){  
     for(let i=start; i<start+5; i++){
     // dataArr.forEach((data, i) => {
       let data=dataArr[i]
@@ -137,7 +165,7 @@
     }
     // );
   }
-    table()
+    table(dataArr)
     //--------------editModal
     editBody.addEventListener("click", (el) => {
       if (el.target.id == "editBody" || el.target.id == "editContainer")
@@ -149,7 +177,7 @@
     prevBtn.addEventListener('click',()=>{
       tbody.innerHTML=""
       start-=5
-      table()
+      table(dataArr)
       pagination()
     })
 
@@ -157,7 +185,7 @@
     nxtBtn.addEventListener('click',()=>{
       tbody.innerHTML=""
       start+=5
-      table()
+      table(dataArr)
       pagination()
     })
 
@@ -172,6 +200,29 @@
       else prevBtn.disabled=false
     }
     pagination()
+
+    //--------------sorting
+    let inc=document.querySelector('#inc')
+    let desc=document.querySelector('#desc')
+    inc.addEventListener('change',()=>{
+      tbody.innerHTML=""
+      dataArr.sort((a,b)=>b.total-a.total)
+      table(dataArr)
+    })
+    desc.addEventListener('change',()=>{
+      tbody.innerHTML=""
+      dataArr.sort((a,b)=>a.total-b.total)
+      table(dataArr)
+    })
+
+    //------------filtering
+    let typeFilter=document.querySelector('#typeFilter')
+    let sizeFilter=document.querySelector('#sizeFilter')
+    typeFilter.addEventListener('change',(el)=>{
+      tbody.innerHTML=""
+      let filtered=dataArr.filter(each=>each.ctype==el.target.value)
+      table(filtered)
+    })
 
   </script>
   </script>
