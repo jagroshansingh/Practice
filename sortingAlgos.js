@@ -1,5 +1,6 @@
 
 let ar=[3,6,3,5,2,8,9,5,1,4];
+console.log(ar)
 
 function swap(a,b)
 {
@@ -10,6 +11,7 @@ function swap(a,b)
 }
 
 //--------------------------Insertion Sort
+function insertion(){
 for(let i=1; i<ar.length; i++)
 {
     let temp=ar[i];
@@ -21,32 +23,48 @@ for(let i=1; i<ar.length; i++)
     }
     ar[k+1]=temp;
 }
+}
+// insertion()
 // console.log(ar)
 
 
 //--------------------------Selection Sort
+function selection(){
 for(let i=0; i<ar.length; i++)
 {
     let min=Infinity;
+    let pos;
     for(let j=i; j<ar.length; j++)
     {
-        if(ar[j]<min) min=ar[j]
+        if(ar[j]<min)
+        {
+            min=ar[j]
+            pos=j
+        }
     }
-    ar[i]=min;
+    swap(i,pos)
 }
+}
+// selection()
 // console.log(ar)
 
 //---------------------------Bubble Sort
-for(let i=0; i<ar.length; i++)
+function bubble(){
+for(let i=0; i<ar.length-1; i++)
 {
     let flag=false
-    for(let j=i; j<ar.length-(i+1); j++)
+    for(let j=0; j<ar.length-(i+1); j++)
     {
-        if(ar[j]>ar[j+1]) swap(j,j+1)
-        flag=true;
+        if(ar[j]>ar[j+1])
+        { 
+            swap(j,j+1)
+            flag=true;
+        }
     }
     if(!flag) break;
 }
+}
+// bubble()
 // console.log(ar)
 
 //----------------------------Merge Sort
@@ -97,7 +115,8 @@ function merging(s,e,mid){
         k++;
     }
 }
-// console.log(ar)
+sort()
+console.log(ar)
 
 
 // ----------------------quick sort
