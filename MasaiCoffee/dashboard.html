@@ -172,12 +172,15 @@
         editBody.style.display = "none";
     });
 
+
+    let filtered=[...dataArr]
+
     //--------------pagination
     let prevBtn=document.querySelector('#page>button:first-child')
     prevBtn.addEventListener('click',()=>{
       tbody.innerHTML=""
       start-=5
-      table(dataArr)
+      table(filtered)
       pagination()
     })
 
@@ -185,7 +188,7 @@
     nxtBtn.addEventListener('click',()=>{
       tbody.innerHTML=""
       start+=5
-      table(dataArr)
+      table(filtered)
       pagination()
     })
 
@@ -193,7 +196,7 @@
       let pageNum=Math.floor(start/5)+1
       document.querySelector('#page>p').innerText=pageNum
 
-      if(pageNum*start>=dataArr.length) nxtBtn.disabled=true
+      if(pageNum*start>=filtered.length) nxtBtn.disabled=true
       else nxtBtn.disabled=false
 
       if(pageNum==1) prevBtn.disabled=true
@@ -201,26 +204,33 @@
     }
     pagination()
 
+    
     //--------------sorting
     let inc=document.querySelector('#inc')
     let desc=document.querySelector('#desc')
     inc.addEventListener('change',()=>{
       tbody.innerHTML=""
-      dataArr.sort((a,b)=>b.total-a.total)
-      table(dataArr)
+      filtered.sort((a,b)=>b.total-a.total)
+      table(filtered)
     })
     desc.addEventListener('change',()=>{
       tbody.innerHTML=""
-      dataArr.sort((a,b)=>a.total-b.total)
-      table(dataArr)
+      filtered.sort((a,b)=>a.total-b.total)
+      table(filtered)
     })
 
     //------------filtering
     let typeFilter=document.querySelector('#typeFilter')
     let sizeFilter=document.querySelector('#sizeFilter')
+    
     typeFilter.addEventListener('change',(el)=>{
       tbody.innerHTML=""
-      let filtered=dataArr.filter(each=>each.ctype==el.target.value)
+      filtered=dataArr.filter(each=>each.ctype==el.target.value)
+      table(filtered)
+    })
+    sizeFilter.addEventListener('change',(el)=>{
+      tbody.innerHTML=""
+      filtered=filtered.filter(each=>each.size==el.target.value)
       table(filtered)
     })
 
