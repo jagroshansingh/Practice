@@ -115,9 +115,31 @@ function merging(s,e,mid){
         k++;
     }
 }
-sort()
-console.log(ar)
+// sort()
+// console.log(ar)
 
 
 // ----------------------quick sort
+function qsort(s,e){
+    if(s<e){
+        let p=pivot(s,e)
+        qsort(s,p-1)
+        qsort(p+1,e)
+    }
+}
 
+function pivot(s,e){
+    let i=s-1
+    for(let j=s; j<e; j++)
+    {
+        if(ar[j]<ar[e])
+        {
+            i++;
+            swap(i,j)
+        }
+    }
+    i++;
+    swap(i,e)
+}
+qsort(0,ar.length-1)
+console.log(ar)
