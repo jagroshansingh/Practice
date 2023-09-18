@@ -9,7 +9,7 @@ export const BookCard = ({ book }) => {
       <img
         src="https://static.vecteezy.com/system/resources/previews/009/384/332/large_2x/old-vintage-book-clipart-design-illustration-free-png.png"
         alt="bookImage"
-        width={'100%'}
+        width={'50%'}
       />
       <h3>{book_name}</h3>
       <p>Author: {author}</p>
