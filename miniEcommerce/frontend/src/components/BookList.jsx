@@ -9,12 +9,15 @@ export const BookList = () => {
     const dispatch=useDispatch()
     const books=useSelector((store)=>store.books)
     const location=useLocation()
-    const [searchParams,setSearchParams]=useSearchParams()
-    let all=searchParams.getAll('category')
+    const [searchParams]=useSearchParams()
+    let cat=searchParams.getAll('category')
+    let or=searchParams.get('order')
 
     useEffect(()=>{
       let paramObj={
-        category:all
+        category:cat,
+        _sort: or && 'release_year',
+        _order: or
       }
         dispatch(getBooks(paramObj))
     },[location.search])
