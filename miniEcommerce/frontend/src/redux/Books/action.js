@@ -14,12 +14,13 @@ const getBooksFailureAction=()=>{
 }
 
 
-export const getBooks=(dispatch)=>{
+export const getBooks=(paramObj)=>(dispatch)=>{
     dispatch(getBooksRequestAction())
-
+    // console.log(paramObj)
     axios({
         method:'get',
-        url:'http://localhost:8080/books'
+        url:'http://localhost:8080/books',
+        params:paramObj
     })
     .then((res)=>{
         // console.log(res.data)

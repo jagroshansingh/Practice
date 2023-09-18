@@ -3,15 +3,21 @@ import { BookCard } from './BookCard'
 import {useDispatch, useSelector} from 'react-redux'
 import { getBooks } from '../redux/Books/action'
 import styled from 'styled-components'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 export const BookList = () => {
     const dispatch=useDispatch()
     const books=useSelector((store)=>store.books)
-    // console.log(books)
+    const location=useLocation()
+    const [searchParams,setSearchParams]=useSearchParams()
+    let all=searchParams.getAll('category')
 
     useEffect(()=>{
-        dispatch(getBooks)
-    },[])
+      let paramObj={
+        category:all
+      }
+        dispatch(getBooks(paramObj))
+    },[location.search])
     
   return (
     <DivWrapper>
