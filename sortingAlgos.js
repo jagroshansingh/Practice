@@ -68,7 +68,6 @@ for(let i=0; i<ar.length-1; i++)
 // console.log(ar)
 
 //----------------------------Merge Sort
-sort(0,ar.length-1)
 function sort(s,e){
     if(s==e) return
 
@@ -115,7 +114,7 @@ function merging(s,e,mid){
         k++;
     }
 }
-// sort()
+// sort(0,ar.length-1)
 // console.log(ar)
 
 
@@ -140,6 +139,7 @@ function pivot(s,e){
     }
     i++;
     swap(i,e)
+    return i
 }
 qsort(0,ar.length-1)
 console.log(ar)
