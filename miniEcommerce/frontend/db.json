@@ -3,7 +3,7 @@
     {
       "id": 1,
       "no_of_chapters": 6,
-      "author": "Masai",
+      "author": "Mai",
       "cover_photo": "",
       "book_name": "Full-Stack Web Development",
       "category": "Novel",
@@ -24,7 +24,7 @@
       "no_of_chapters": 6,
       "author": "Masai",
       "cover_photo": "",
-      "book_name": "Full-Stack Web Development",
+      "book_name": "MERN-Stack Web Development",
       "category": "Science_Fiction",
       "release_year": 2020,
       "chapters": [

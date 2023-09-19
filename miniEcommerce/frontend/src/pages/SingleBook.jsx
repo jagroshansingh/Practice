@@ -14,6 +14,7 @@ export const SingleBook = () => {
   },[])
   return (
     <div>
+      <h2>Book id: {id}</h2>
       {bookData && <BookCard book={bookData}/>}
     </div>
   )

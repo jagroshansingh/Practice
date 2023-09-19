@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from 'styled-components'
 
 export const BookCard = ({ book }) => {
@@ -19,6 +19,9 @@ export const BookCard = ({ book }) => {
       <p>Author: {author}</p>
       <p>Category: {category}</p>
       <p>Year: {release_year}</p>
+      <Link to={`/books/${id}/edit`}>
+      <button>Edit</button>
+      </Link>
     </DivWrapper>
   );
 };
