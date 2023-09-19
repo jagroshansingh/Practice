@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from '../redux/Auth/action'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const Login = () => {
   const [email,setEmail]=useState("")
   const [password, setPassword]=useState("")
   const dispatch=useDispatch()
   const navigate=useNavigate()
+  const location=useLocation()
 
   const handleEmail=(e)=>{
     setEmail(e.target.value)
@@ -18,7 +19,7 @@ export const Login = () => {
   const handleLogin=()=>{
     let cred={email,password}
 
-    dispatch(login(cred)).then(res=>navigate("/"))
+    dispatch(login(cred)).then(res=>navigate(location.state, {replace:true}))
     .catch(err=>console.log(err))
   }
   return (

@@ -1,16 +1,20 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 
 export const BookCard = ({ book }) => {
-  const { book_name, author, category, release_year } = book;
-  // console.log(styled)
+  // console.log(book)
+  const { book_name, author, category, release_year,id } = book;
   return (
     <DivWrapper>
+      <Link to={`/books/${id}`}>
       <img
         src="https://static.vecteezy.com/system/resources/previews/009/384/332/large_2x/old-vintage-book-clipart-design-illustration-free-png.png"
         alt="bookImage"
         width={'50%'}
+        style={{cursor:'pointer'}}
       />
+      </Link>
       <h3>{book_name}</h3>
       <p>Author: {author}</p>
       <p>Category: {category}</p>
