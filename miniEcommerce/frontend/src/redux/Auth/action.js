@@ -15,38 +15,37 @@ const loginSuccessAction = (payload) => {
 const loginFailureAction = () => {
   return { type: USER_LOGIN_FAILURE };
 };
-const registerSuccessAction=()=>{
-  return {type:USER_REGISTER_SUCCESS}
-}
-
+const registerSuccessAction = () => {
+  return { type: USER_REGISTER_SUCCESS };
+};
 
 export const login = (userData) => (dispatch) => {
   dispatch(loginRequestAction());
 
   return axios({
     method: "post",
-    url: "https://reqres.in/api/login",
-    // url:"http://localhost:8080/users/login",
+    // url: "https://reqres.in/api/login",
+    url: "http://localhost:9000/users/login",
     data: userData,
   })
-    .then((res) =>{
-         dispatch(loginSuccessAction(res.data.token))
-        // console.log(res)
+    .then((res) => {
+      if (res.data?.token) dispatch(loginSuccessAction(res.data.token));
+      else dispatch(loginFailureAction());
+      console.log(res.data);
     })
     .catch((err) => dispatch(loginFailureAction()));
 };
 
-export const register=(userData)=>(dispatch)=>{
+export const register = (userData) => (dispatch) => {
   dispatch(loginRequestAction());
   return axios({
-    method:'post',
-    url:"http://localhost:9000/users/register",
-    data:userData,
+    method: "post",
+    url: "http://localhost:9000/users/register",
+    data: userData,
   })
-  .then((res)=>{
-    // console.log(res)
-    dispatch(registerSuccessAction())
-  })
-  .catch((err)=>dispatch(loginFailureAction()));
-}
-
+    .then((res) => {
+      // console.log(res)
+      dispatch(registerSuccessAction());
+    })
+    .catch((err) => dispatch(loginFailureAction()));
+};
