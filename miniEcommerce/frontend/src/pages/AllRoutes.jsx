@@ -4,6 +4,7 @@ import { Books } from './Books'
 import { SingleBook } from './SingleBook'
 import { EditBook } from './EditBook'
 import { ProtectedAuth } from '../components/ProtectedAuth'
+import { Register } from './Register'
 
 export const AllRoutes=()=>{
     return(
@@ -13,6 +14,7 @@ export const AllRoutes=()=>{
                 <Route path='/books/:id' element={<ProtectedAuth><SingleBook/></ProtectedAuth>}/>
                 <Route path='/books/:id/edit' element={<ProtectedAuth><EditBook/></ProtectedAuth>}/>
                 <Route path='/login' element={<Login/>}/>
+                <Route path='/register' element={<Register/>}/>
                 <Route path='*' element={<h3>Error 404: Not Found</h3>}/>
             </Routes>
         </BrowserRouter>

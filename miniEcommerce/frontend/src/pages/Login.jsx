@@ -9,6 +9,7 @@ export const Login = () => {
   const dispatch=useDispatch()
   const navigate=useNavigate()
   const location=useLocation()
+  console.log(location)
 
   const handleEmail=(e)=>{
     setEmail(e.target.value)
@@ -19,7 +20,7 @@ export const Login = () => {
   const handleLogin=()=>{
     let cred={email,password}
 
-    dispatch(login(cred)).then(res=>navigate(location.state, {replace:true}))
+    dispatch(login(cred)).then(res=>navigate(location.state||"/", {replace:true}))
     .catch(err=>console.log(err))
   }
   return (
