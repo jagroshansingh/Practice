@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>Click</button>
+  </body>
+  <script>
+    function outer(a) {
+      return function inner(b) {
+        return a + b;
+      };
+    }
+
+    let res = outer(5);
+    let ans = res(7);
+    console.log(ans);
+
+    //-----------memoize
+
+    function outsider(initial = 0) {
+      let value = initial;
+      return function insider(b) {
+        value = value + b;
+        console.log(value);
+      };
+    }
+
+    let answer = outsider();
+    answer(5);
+    answer(4);
+    answer(9);
+
+    //-------------1st application(Debouncing)
+
+    function debounce() {
+      let de;
+      function fun() {
+        de && clearTimeout(de);
+        de = setTimeout(() => {
+          console.log("I clicked it");
+        }, 1000);
+      }
+    }
+
+    document.querySelector("button").addEventListener("click", ()=>debounce);
+  </script>
+</html>
