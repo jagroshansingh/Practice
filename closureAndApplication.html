@@ -38,14 +38,13 @@
 
     function debounce() {
       let de;
-      function fun() {
-        de && clearTimeout(de);
-        de = setTimeout(() => {
-          console.log("I clicked it");
-        }, 1000);
+      return function fun() {
+        de && clearTimeout(de)
+        de=setTimeout(()=>{console.log('hekkkek')},1000)
       }
     }
 
-    document.querySelector("button").addEventListener("click", ()=>debounce);
+    let deFun=debounce()
+    document.querySelector("button").addEventListener("click", ()=>{deFun()});
   </script>
 </html>
