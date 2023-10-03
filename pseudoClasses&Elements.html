@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <style>
+        i{
+            margin-left: -25px;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+    <form>
+      <p>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+        <i class="bi bi-eye-slash" id="togglePassword"></i>
+      </p>
+    </form>
+  </body>
+  <script>
+    const togglePassword=document.querySelector('#togglePassword')
+    const password=document.querySelector('#password')
+
+    togglePassword.addEventListener('click',(el)=>{
+        let type=password.getAttribute('type')=='password'?'text':'password'
+        password.setAttribute('type',type)
+        console.log(el)
+        let eye=el.target.className=='bi-eye'?'bi bi-eye-slash':'bi-eye'
+        el.target.className=eye
+    })
+  </script>
+</html>
